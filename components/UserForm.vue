@@ -40,11 +40,14 @@
 
 <script lang="ts" setup>
 import { TabItemInterface } from "interfaces/TabItem.interface";
+import { useUserApi } from "@/composables/useUserApi";
 
 const tabs: TabItemInterface[] = [
   { id: "login", label: "Zaloguj się" },
   { id: "registration", label: "Utwórz konto" },
 ];
+
+const { loginUserApi } = useUserApi();
 
 const activeTab = ref<string>(tabs[0].id);
 const name = ref("");
@@ -54,6 +57,28 @@ const error = ref<string | string[]>("");
 
 const loginUser = async () => {
   console.log("loginUser");
+
+  const body = {
+    name: name.value,
+    password: password.value,
+  };
+
+  try {
+    loading.value = true;
+    const token = await loginUserApi(body);
+
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+
+    console.log("token", token);
+    // SHOULD UPDATE USER IN CONTEXT
+  } catch (err: any) {
+    error.value =
+      err.data?.message || "Nie udało się zalogować, prosimy spróbować później";
+  } finally {
+    loading.value = false;
+  }
 };
 
 const createUser = async () => {
