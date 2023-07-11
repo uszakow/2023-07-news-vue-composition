@@ -41,13 +41,15 @@
 <script lang="ts" setup>
 import { TabItemInterface } from "interfaces/TabItem.interface";
 import { useUserApi } from "@/composables/useUserApi";
+import { useAppState } from "@/composables/state";
 
 const tabs: TabItemInterface[] = [
   { id: "login", label: "Zaloguj się" },
   { id: "registration", label: "Utwórz konto" },
 ];
 
-const { loginUserApi } = useUserApi();
+const { createUserApi, loginUserApi } = useUserApi();
+const { setUserContext } = useAppState();
 
 const activeTab = ref<string>(tabs[0].id);
 const name = ref("");
@@ -56,8 +58,6 @@ const loading = ref(false);
 const error = ref<string | string[]>("");
 
 const loginUser = async () => {
-  console.log("loginUser");
-
   const body = {
     name: name.value,
     password: password.value,
@@ -71,8 +71,7 @@ const loginUser = async () => {
       localStorage.setItem("token", token);
     }
 
-    console.log("token", token);
-    // SHOULD UPDATE USER IN CONTEXT
+    await setUserContext();
   } catch (err: any) {
     error.value =
       err.data?.message || "Nie udało się zalogować, prosimy spróbować później";
@@ -82,7 +81,25 @@ const loginUser = async () => {
 };
 
 const createUser = async () => {
-  console.log("createUser");
+  const body = {
+    name: name.value,
+    password: password.value,
+  };
+
+  try {
+    loading.value = true;
+
+    const response = await createUserApi(body);
+
+    if (response.statusCode === 201) {
+      loginUser();
+    }
+  } catch (err: any) {
+    error.value =
+      err.data?.message || "Nie udało się stworzyć konto użytkownika";
+  } finally {
+    loading.value = false;
+  }
 };
 </script>
 

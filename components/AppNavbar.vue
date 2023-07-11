@@ -6,7 +6,11 @@
   </nav>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useAppState } from "@/composables/state";
+
+const { user } = useAppState();
+</script>
 
 <style lang="scss">
 @import "styles/components/Navbar";

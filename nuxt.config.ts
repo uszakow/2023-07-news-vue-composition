@@ -2,9 +2,8 @@ import { fileURLToPath } from "url";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  devServer: {
-    port: 3005,
+  alias: {
+    styles: fileURLToPath(new URL("./assets/styles", import.meta.url)),
   },
   css: ["~/assets/styles/globals.scss"],
   components: [
@@ -13,7 +12,8 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  alias: {
-    styles: fileURLToPath(new URL("./assets/styles", import.meta.url)),
+  devtools: { enabled: true },
+  devServer: {
+    port: 3005,
   },
 });
