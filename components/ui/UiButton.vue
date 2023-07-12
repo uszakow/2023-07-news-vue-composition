@@ -6,7 +6,7 @@
   >
     <div v-if="type === 'adding'" class="plus relative mr-1"></div>
 
-    <NuxtIcon v-if="loading" class="loader" name="loader" />
+    <NuxtIcon v-if="loading" name="loader" class="loader" />
     <template v-else>
       {{ label }}
     </template>

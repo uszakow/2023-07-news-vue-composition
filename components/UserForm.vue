@@ -42,7 +42,6 @@
 <script lang="ts" setup>
 import { TabItemInterface } from "interfaces/TabItem.interface";
 import { useUserApi } from "@/composables/useUserApi";
-import { useAppState } from "@/composables/state";
 
 const tabs: TabItemInterface[] = [
   { id: "login", label: "Zaloguj się" },

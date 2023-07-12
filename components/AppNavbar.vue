@@ -2,14 +2,31 @@
   <nav class="navbar flex flex-justify-between px-3">
     <NuxtLink to="/" class="navbar-item">Wiadomości</NuxtLink>
 
-    <NuxtLink to="/login" class="navbar-item">Zaloguj się</NuxtLink>
+    <UiDropdown v-if="user">
+      <template v-slot:title>
+        <div class="navbar-item user-name">
+          {{ user?.name }}
+        </div>
+      </template>
+
+      <template v-slot:content>
+        <NuxtLink to="/profile" class="dropdown-item">
+          Strona użytkownika
+        </NuxtLink>
+        <button class="dropdown-item" @click="logout()">Wyloguj się</button>
+      </template>
+    </UiDropdown>
+    <NuxtLink v-else to="/login" class="navbar-item">Zaloguj się</NuxtLink>
   </nav>
 </template>
 
 <script lang="ts" setup>
-import { useAppState } from "@/composables/state";
+const { user, setUserContext } = useAppState();
 
-const { user } = useAppState();
+const logout = () => {
+  localStorage.removeItem("token");
+  setUserContext();
+};
 </script>
 
 <style lang="scss" scoped>

@@ -8,14 +8,14 @@ export const useUserApi = () => {
   const createUserApi = async (
     body: UserDto
   ): Promise<CustomResponseInterface> => {
-    return await api<CustomResponseInterface>("/user", {
+    return await api<CustomResponseInterface>("user", {
       method: "post",
       body,
     });
   };
 
   const loginUserApi = async (body: UserDto): Promise<string> => {
-    const response = await api<{ token: string }>("/user/login", {
+    const response = await api<{ token: string }>("user/login", {
       method: "post",
       body,
     });
@@ -24,11 +24,9 @@ export const useUserApi = () => {
   };
 
   const getUserApi = async (token: string): Promise<UserInterface> => {
-    const response = await api<UserInterface>("/user", {
+    const response = await api<UserInterface>("user", {
       headers: getRequestOptions(token),
     });
-
-    console.log("getUserApi", response);
 
     return response;
   };
