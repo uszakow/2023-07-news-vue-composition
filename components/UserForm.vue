@@ -49,7 +49,7 @@ const tabs: TabItemInterface[] = [
 ];
 
 const { createUserApi, loginUserApi } = useUserApi();
-const { setUserContext } = useAppState();
+const { setUserState } = useAppState();
 
 const activeTab = ref<string>(tabs[0].id);
 const name = ref("");
@@ -77,7 +77,7 @@ const loginUser = async () => {
       localStorage.setItem("token", token);
     }
 
-    await setUserContext();
+    await setUserState();
   } catch (err: any) {
     error.value =
       err.data?.message || "Nie udało się zalogować, prosimy spróbować później";

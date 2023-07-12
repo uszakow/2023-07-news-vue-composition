@@ -1,12 +1,12 @@
 export const api = $fetch.create({
   baseURL: "http://localhost:3052",
   onResponseError(context) {
-    const { setUserContext } = useAppState();
+    const { setUserState } = useAppState();
 
     // manage incorrect token
     if (context.response && context.response.status === 401) {
       localStorage.removeItem("token");
-      setUserContext();
+      setUserState();
     }
   },
 });

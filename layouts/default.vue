@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-const { isLoading, user, setUserContext } = useAppState();
+const { isLoading, user, setUserState } = useAppState();
 const route = useRoute();
 
 // redirect for logged/unlogged users
@@ -29,6 +29,6 @@ watch([user, isLoading, route], () => {
 });
 
 onMounted(() => {
-  setUserContext();
+  setUserState();
 });
 </script>

@@ -1,6 +1,7 @@
 import { api } from "@/api.config";
-import { getRequestOptions } from "@/helpers/getRequestOptions";
+import { getHeaders } from "@/helpers/getHeaders";
 import { CustomResponseInterface } from "interfaces/CustomResponse.interface";
+import { UpdateUserDto } from "interfaces/UpdateUser.dto";
 import { UserDto } from "interfaces/User.dto";
 import { UserInterface } from "interfaces/User.interface";
 
@@ -24,16 +25,28 @@ export const useUserApi = () => {
   };
 
   const getUserApi = async (token: string): Promise<UserInterface> => {
-    const response = await api<UserInterface>("user", {
-      headers: getRequestOptions(token),
+    return await api<UserInterface>("user", {
+      headers: getHeaders(token),
     });
-
-    return response;
   };
 
-  const updateUserApi = async () => {};
+  const updateUserApi = async (
+    body: UpdateUserDto,
+    token: string
+  ): Promise<void> => {
+    return await api("user", {
+      method: "put",
+      headers: getHeaders(token),
+      body,
+    });
+  };
 
-  const deleteUserApi = async (token: string) => {};
+  const deleteUserApi = async (token: string): Promise<void> => {
+    return await api("user", {
+      method: "delete",
+      headers: getHeaders(token),
+    });
+  };
 
   return {
     createUserApi,

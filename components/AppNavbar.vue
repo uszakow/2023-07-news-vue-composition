@@ -21,11 +21,11 @@
 </template>
 
 <script lang="ts" setup>
-const { user, setUserContext } = useAppState();
+const { user, setUserState } = useAppState();
 
 const logout = () => {
   localStorage.removeItem("token");
-  setUserContext();
+  setUserState();
 };
 </script>
 
