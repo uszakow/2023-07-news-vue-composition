@@ -57,6 +57,6 @@ defineProps({
 defineEmits(["valueChange"]);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "styles/components/ui/UiInput";
 </style>

@@ -34,6 +34,7 @@
         :loading="loading"
         @click-button="activeTab === 'login' ? loginUser() : createUser()"
       />
+      <UiErrorMessage :message="error" />
     </div>
   </div>
 </template>
@@ -56,6 +57,12 @@ const name = ref("");
 const password = ref("");
 const loading = ref(false);
 const error = ref<string | string[]>("");
+
+watch(error, () => {
+  setTimeout(() => {
+    error.value = "";
+  }, 5000);
+});
 
 const loginUser = async () => {
   const body = {
@@ -103,6 +110,6 @@ const createUser = async () => {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "styles/components/UserForm";
 </style>

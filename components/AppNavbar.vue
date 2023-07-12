@@ -12,6 +12,6 @@ import { useAppState } from "@/composables/state";
 const { user } = useAppState();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "styles/components/Navbar";
 </style>

@@ -28,6 +28,6 @@ defineProps({
 defineEmits(["tabChange"]);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "styles/components/ui/UiTabs";
 </style>

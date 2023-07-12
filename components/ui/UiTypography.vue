@@ -22,6 +22,6 @@ const props = defineProps({
 const typographyClasses = `${props.type} ${props.classes}`;
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "styles/components/ui/UiTypography";
 </style>

@@ -6,7 +6,7 @@
   >
     <div v-if="type === 'adding'" class="plus relative mr-1"></div>
 
-    <div v-if="loading">Loading</div>
+    <NuxtIcon v-if="loading" class="loader" name="loader" />
     <template v-else>
       {{ label }}
     </template>
@@ -45,6 +45,6 @@ defineProps({
 defineEmits(["clickButton"]);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "styles/components/ui/UiButton";
 </style>
