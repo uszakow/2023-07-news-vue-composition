@@ -48,8 +48,8 @@ const tabs: TabItemInterface[] = [
   { id: "registration", label: "Utwórz konto" },
 ];
 
-const { createUserApi, loginUserApi } = useUserApi();
 const { setUserState } = useAppState();
+const { createUserApi, loginUserApi } = useUserApi();
 
 const activeTab = ref<string>(tabs[0].id);
 const name = ref("");
