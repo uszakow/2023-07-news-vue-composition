@@ -39,7 +39,7 @@ const error = ref<string | string[]>("");
 const createNews = async (): Promise<void> => {
   const body: NewsDto = {
     title: newsTitle.value,
-    content: newsTitle.value,
+    content: newsContent.value,
   };
 
   try {

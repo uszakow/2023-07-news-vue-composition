@@ -3,7 +3,12 @@
     <Title>Wiadomości</Title>
   </Head>
 
-  <NewsPreview v-for="item of news" :key="item.id" :news="item" />
+  <NewsPreview
+    v-for="item of news"
+    :key="item.id"
+    :news="item"
+    @news-change="getNewsList()"
+  />
 
   <NewsAdd v-if="user" @news-change="getNewsList()" />
 </template>
