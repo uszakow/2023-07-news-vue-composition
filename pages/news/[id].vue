@@ -27,6 +27,10 @@ const { data: news } = await useAsyncData<NewsInterface>(() =>
   getNewsApi(newsId)
 );
 
+if (!news.value) {
+  throw createError({ statusCode: 404 });
+}
+
 const content = computed(() => news.value?.content.split("\n"));
 </script>
 
