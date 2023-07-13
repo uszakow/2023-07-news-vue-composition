@@ -2,8 +2,8 @@
   <div class="user-form relative m-auto mt-3">
     <UiTabs
       :tabs="tabs"
-      :activeTab="activeTab"
-      @tabChange="activeTab = $event"
+      :active-tab="activeTab"
+      @tab-change="activeTab = $event"
     />
     <div class="user-form-wrap px-2 py-3">
       <UiTypography type="title">

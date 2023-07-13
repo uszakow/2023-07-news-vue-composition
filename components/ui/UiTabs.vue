@@ -25,7 +25,9 @@ defineProps({
   },
 });
 
-defineEmits(["tabChange"]);
+defineEmits<{
+  tabChange: [tabId: string];
+}>();
 </script>
 
 <style lang="scss" scoped>

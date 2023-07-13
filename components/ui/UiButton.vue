@@ -42,7 +42,9 @@ defineProps({
   },
 });
 
-defineEmits(["clickButton"]);
+defineEmits<{
+  clickButton: [];
+}>();
 </script>
 
 <style lang="scss" scoped>

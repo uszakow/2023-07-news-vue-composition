@@ -34,7 +34,9 @@ defineProps({
   },
 });
 
-defineEmits(["closeModal"]);
+defineEmits<{
+  closeModal: [];
+}>();
 </script>
 
 <style lang="scss" scoped>
