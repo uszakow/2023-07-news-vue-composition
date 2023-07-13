@@ -24,7 +24,9 @@
     </UiTypography>
 
     <div class="news-preview-content">
-      <p v-for="item of content">{{ item }}</p>
+      <p v-for="(item, index) in content" :key="index + item">
+        {{ item }}
+      </p>
     </div>
 
     <NewsManageModal

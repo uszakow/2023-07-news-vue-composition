@@ -4,7 +4,7 @@
   </Head>
 
   <NewsPreview
-    v-for="item of news"
+    v-for="item in news"
     :key="item.id"
     :news="item"
     @news-change="getNewsList()"

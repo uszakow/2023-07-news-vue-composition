@@ -1,7 +1,7 @@
 <template>
   <nav class="tabs">
     <button
-      v-for="tab of tabs"
+      v-for="tab in tabs"
       :key="tab.id"
       :class="{ active: activeTab === tab.id }"
       @click="$emit('tabChange', tab.id)"
