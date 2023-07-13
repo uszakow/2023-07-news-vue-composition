@@ -20,7 +20,7 @@
 
     <UiModal
       :title="modalTitle"
-      :isOpen="isModalOpen"
+      :is-open="isModalOpen"
       @close-modal="closeModal()"
     >
       <template v-if="modalName === 'name'">
@@ -78,7 +78,7 @@
         />
       </template>
 
-      <UiErrorMessage :message="error" />
+      <UiErrorMessage v-if="error" :message="error" />
     </UiModal>
   </div>
 </template>

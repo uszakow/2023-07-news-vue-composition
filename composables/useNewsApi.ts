@@ -1,4 +1,4 @@
-import { api } from "api.config";
+import { api } from "@/api.config";
 import { getHeaders } from "@/helpers/getHeaders";
 import { NewsDto } from "interfaces/News.dto";
 import { NewsInterface } from "interfaces/News.interface";

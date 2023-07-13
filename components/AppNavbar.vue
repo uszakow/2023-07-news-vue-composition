@@ -30,5 +30,5 @@ const logout = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "styles/components/Navbar";
+@import "styles/components/AppNavbar";
 </style>

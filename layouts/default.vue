@@ -9,7 +9,7 @@
   <AppNavbar />
   <main class="content">
     <slot></slot>
-    <UiLoader v-if="isLoading" />
+    <UiLoader v-show="isLoading" />
   </main>
   <AppFooter />
 </template>

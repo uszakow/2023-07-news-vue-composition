@@ -12,5 +12,5 @@
 </template>
 
 <style lang="scss" scoped>
-@import "styles/components/Footer";
+@import "styles/components/AppFooter";
 </style>

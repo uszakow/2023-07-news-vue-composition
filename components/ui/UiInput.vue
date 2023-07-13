@@ -54,7 +54,9 @@ defineProps({
   },
 });
 
-defineEmits(["valueChange"]);
+defineEmits<{
+  valueChange: [value: string];
+}>();
 </script>
 
 <style lang="scss" scoped>

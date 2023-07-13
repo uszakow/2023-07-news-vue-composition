@@ -34,7 +34,7 @@
         :loading="loading"
         @click-button="activeTab === 'login' ? loginUser() : createUser()"
       />
-      <UiErrorMessage :message="error" />
+      <UiErrorMessage v-if="error" :message="error" />
     </div>
   </div>
 </template>
@@ -42,6 +42,7 @@
 <script lang="ts" setup>
 import { TabItemInterface } from "interfaces/TabItem.interface";
 import { useUserApi } from "@/composables/useUserApi";
+import { UserDto } from "interfaces/User.dto";
 
 const tabs: TabItemInterface[] = [
   { id: "login", label: "Zaloguj się" },
@@ -64,7 +65,7 @@ watch(error, () => {
 });
 
 const loginUser = async () => {
-  const body = {
+  const body: UserDto = {
     name: name.value,
     password: password.value,
   };
@@ -87,7 +88,7 @@ const loginUser = async () => {
 };
 
 const createUser = async () => {
-  const body = {
+  const body: UserDto = {
     name: name.value,
     password: password.value,
   };
