@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <UiTypography type="title">Strona nie była znaleziona.</UiTypography>
+    <AppError />
   </NuxtLayout>
 </template>
 
