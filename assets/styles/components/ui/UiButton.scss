@@ -14,8 +14,10 @@
   font-size: px(14);
   border-radius: $border-radius;
 
-  .loader {
+  :deep(.loader.nuxt-icon svg) {
     width: px(24);
+    height: auto;
+    margin: 0;
   }
 }
 

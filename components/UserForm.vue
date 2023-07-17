@@ -2,8 +2,8 @@
   <div class="user-form relative m-auto mt-3">
     <UiTabs
       :tabs="tabs"
-      :activeTab="activeTab"
-      @tabChange="activeTab = $event"
+      :active-tab="activeTab"
+      @tab-change="activeTab = $event"
     />
     <div class="user-form-wrap px-2 py-3">
       <UiTypography type="title">
@@ -34,17 +34,23 @@
         :loading="loading"
         @click-button="activeTab === 'login' ? loginUser() : createUser()"
       />
+      <UiErrorMessage v-if="error" :message="error" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { TabItemInterface } from "interfaces/TabItem.interface";
+import { useUserApi } from "@/composables/useUserApi";
+import { UserDto } from "interfaces/User.dto";
 
 const tabs: TabItemInterface[] = [
   { id: "login", label: "Zaloguj się" },
   { id: "registration", label: "Utwórz konto" },
 ];
+
+const { setUserState } = useAppState();
+const { createUserApi, loginUserApi } = useUserApi();
 
 const activeTab = ref<string>(tabs[0].id);
 const name = ref("");
@@ -52,15 +58,58 @@ const password = ref("");
 const loading = ref(false);
 const error = ref<string | string[]>("");
 
+watch(error, () => {
+  setTimeout(() => {
+    error.value = "";
+  }, 5000);
+});
+
 const loginUser = async () => {
-  console.log("loginUser");
+  const body: UserDto = {
+    name: name.value,
+    password: password.value,
+  };
+
+  try {
+    loading.value = true;
+    const token = await loginUserApi(body);
+
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+
+    await setUserState();
+  } catch (err: any) {
+    error.value =
+      err.data?.message || "Nie udało się zalogować, prosimy spróbować później";
+  } finally {
+    loading.value = false;
+  }
 };
 
 const createUser = async () => {
-  console.log("createUser");
+  const body: UserDto = {
+    name: name.value,
+    password: password.value,
+  };
+
+  try {
+    loading.value = true;
+
+    const response = await createUserApi(body);
+
+    if (response.statusCode === 201) {
+      loginUser();
+    }
+  } catch (err: any) {
+    error.value =
+      err.data?.message || "Nie udało się stworzyć konto użytkownika";
+  } finally {
+    loading.value = false;
+  }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "styles/components/UserForm";
 </style>

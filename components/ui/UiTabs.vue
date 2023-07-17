@@ -1,7 +1,7 @@
 <template>
   <nav class="tabs">
     <button
-      v-for="tab of tabs"
+      v-for="tab in tabs"
       :key="tab.id"
       :class="{ active: activeTab === tab.id }"
       @click="$emit('tabChange', tab.id)"
@@ -25,9 +25,11 @@ defineProps({
   },
 });
 
-defineEmits(["tabChange"]);
+defineEmits<{
+  tabChange: [tabId: string];
+}>();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "styles/components/ui/UiTabs";
 </style>

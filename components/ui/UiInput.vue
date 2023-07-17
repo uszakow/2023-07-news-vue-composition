@@ -1,7 +1,7 @@
 <template>
   <div class="input" :title="required ? 'To pole jest obowiązkowe' : ''">
-    <label v-if="label" :htmlFor="label">
-      {{ label }}{{ required && " *" }}
+    <label v-if="label" :for="label">
+      {{ label }}{{ required ? " *" : "" }}
     </label>
 
     <textarea
@@ -54,9 +54,11 @@ defineProps({
   },
 });
 
-defineEmits(["valueChange"]);
+defineEmits<{
+  valueChange: [value: string];
+}>();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "styles/components/ui/UiInput";
 </style>
