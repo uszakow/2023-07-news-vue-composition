@@ -58,9 +58,13 @@ const password = ref("");
 const loading = ref(false);
 const error = ref<string | string[]>("");
 
-const timeout = ref<ReturnType<typeof setTimeout>>();
+const timeout = ref<NodeJS.Timeout>();
 
 watch(error, () => {
+  if (timeout.value) {
+    clearTimeout(timeout.value);
+  }
+
   timeout.value = setTimeout(() => {
     error.value = "";
   }, 5000);
