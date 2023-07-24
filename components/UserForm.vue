@@ -58,8 +58,10 @@ const password = ref("");
 const loading = ref(false);
 const error = ref<string | string[]>("");
 
+const timeout = ref<ReturnType<typeof setTimeout>>();
+
 watch(error, () => {
-  setTimeout(() => {
+  timeout.value = setTimeout(() => {
     error.value = "";
   }, 5000);
 });
@@ -108,6 +110,10 @@ const createUser = async () => {
     loading.value = false;
   }
 };
+
+onUnmounted(() => {
+  clearTimeout(timeout.value);
+});
 </script>
 
 <style lang="scss" scoped>
